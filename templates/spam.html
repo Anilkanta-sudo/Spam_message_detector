@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+{% block head %}
+<title>Home</title>
+{% endblock %}
+
+{% block body %}
+<h1>Spam Message Detector</h1>
+<hr>
+<h2>Test:</h2>
+<hr>
+<form action='/results' method="POST">
+    <label for="content">MSG:</label>
+    <textarea class="form-control" id="content" name="content" placeholder="Enter Msg" aria-label="Enter content" rows="3"></textarea>
+    <br>
+    <input type="submit" value="test">
+</form>
+
+{% endblock %}
