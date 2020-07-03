@@ -5,12 +5,12 @@ app = Flask(__name__)
 # importing the Dataset
 import pandas as pd
 
-messages = pd.read_csv('/home/smsc/NLP/smsspamcollection/SMSSpamCollection', sep='\t', names=["label", "message"])
+messages = pd.read_csv('/home/smsc/Spam_classifier_App/Spam_classifier/smsspamcollection/SMSSpamCollection', sep='\t', names=["label", "message"])
 
 # Data cleaning and preprocessing
 import re
 import nltk
-
+print(messages.describe())
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from nltk.stem import WordNetLemmatizer
@@ -29,7 +29,7 @@ for i in range(0, len(messages)):
 # creating Tf-IDF model
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
-cv = TfidfVectorizer(max_features=5000)
+cv = CountVectorizer()
 x = cv.fit_transform(corpus).toarray()
 
 y = pd.get_dummies(messages['label'])
@@ -64,6 +64,7 @@ def spam_page():
 def results_page():
     if request.method == "POST":
         message = request.form['content']
+        message = str(message).lower()
         data = [message]
         vect = cv.transform(data).toarray()
         my_prediction = clf.predict(vect)
@@ -71,4 +72,4 @@ def results_page():
 
 
 if __name__=="__main__":
-    app.run(port=8002, debug=True)
+    app.run(host="192.168.74.51",port=8002, debug=True)

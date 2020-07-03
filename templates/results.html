@@ -3,21 +3,18 @@
 {% block head %}
 <title>Home</title>
 {% endblock %}
+<div class="container-1">
 <h1>Results</h1>
 <br>
+
 {% block body %}
 {% if my_prediction[0] == 1 %}
 	<h2 style="color:red;">Spam</h2>
 {% elif my_prediction[0] == 0 %}
 <h2 style="color:blue;">Not a Spam </h2>
 {% endif %}
-
-<a class="btn btn-danger float-right" href="/spam">Back
-
-
-
-
-</a>
+<a class="btn btn-danger float-right" href="/spam">Back</a>
+</div>
 
 
 {% endblock %}
