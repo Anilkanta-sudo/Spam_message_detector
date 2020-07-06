@@ -8,10 +8,15 @@
 <br>
 
 {% block body %}
-{% if my_prediction[0] == 1 %}
+{% if my_prediction == "spam"  %}
 	<h2 style="color:red;">Spam</h2>
-{% elif my_prediction[0] == 0 %}
-<h2 style="color:blue;">Not a Spam </h2>
+	<h2 style="color:red;">Confidence level is: {{ spam_data }}</h2>
+
+{% elif my_prediction == "ham" %}
+	<h2 style="color:blue;">Not a spam</h2>
+	<h2 style="color:blue;">Confidence level is: {{ ham_data }}</h2>
+
+
 {% endif %}
 <a class="btn btn-danger float-right" href="/spam">Back</a>
 </div>
